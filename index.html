@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bala | Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f4f8;--card:#fff;--tx:#12162a;--mu:#5b6177;--ln:#dde0ea;--ac:#4f4fe6;--ac2:#0f9d92;--am:#d98a0b;--sa:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);box-sizing:border-box;padding-top:var(--sa)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c0f1d;--card:#161a2c;--tx:#eceefa;--mu:#9aa2bc;--ln:#272c44;--ac:#8c8cff;--ac2:#3fd1c4;--am:#f2b04a}}
+:root[data-theme=dark]{--bg:#0c0f1d;--card:#161a2c;--tx:#eceefa;--mu:#9aa2bc;--ln:#272c44;--ac:#8c8cff;--ac2:#3fd1c4;--am:#f2b04a}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:400 15px/1.55 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;margin:0;line-height:1.2}
+.view{display:none;position:relative;min-height:100dvh;overflow:hidden;padding:28px 20px calc(96px + var(--sb))}
+.view.on{display:block}
+.bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.px{position:absolute;inset:0;transition:transform .18s ease-out}
+.in{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.glass{background:color-mix(in srgb,var(--card) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--ln);border-radius:16px;padding:16px}
+nav{position:fixed;z-index:20;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:8px 6px calc(8px + var(--sb));background:color-mix(in srgb,var(--card) 90%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--ln)}
+nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--mu);text-decoration:none;padding:6px 10px;border-radius:12px}
+nav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav a.on{color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,transparent)}
+#tg{position:fixed;z-index:21;top:calc(10px + var(--sa));right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--ln);background:var(--card);color:var(--tx);cursor:pointer;font-size:16px}
+button,.btn{font:500 14px Figtree,sans-serif;cursor:pointer;border-radius:12px;padding:10px 16px;border:1px solid var(--ln);background:var(--card);color:var(--tx);text-decoration:none;display:inline-block}
+.pri{background:var(--ac);border-color:var(--ac);color:#fff}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+@media (min-width:820px){nav{top:0;bottom:auto;right:auto;width:92px;flex-direction:column;justify-content:center;gap:10px;border-top:0;border-right:1px solid var(--ln);padding:12px 8px}.view{margin-left:92px;padding:48px 40px 48px}}
+/* home */
+#av{width:112px;height:112px;border-radius:50%;border:3px solid var(--ac);background:var(--card) center/cover;display:flex;align-items:center;justify-content:center;font:700 40px Sora;color:var(--ac);cursor:pointer;margin:12px 0 18px;position:relative}
+#av small{position:absolute;bottom:-8px;font:500 10px Figtree;background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:1px 8px;color:var(--mu)}
+.hero h1{font-size:clamp(30px,6vw,46px);max-width:14em}
+.hero p{color:var(--mu);max-width:34em;margin:12px 0 18px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ac2);margin-right:6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}
+.stats div{text-align:center}.stats b{display:block;font:700 22px Sora}.stats span{font-size:12px;color:var(--mu)}
+#photobg{background:center/cover;filter:blur(18px) saturate(1.2);opacity:.28;inset:-30px}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);animation:dr 9s ease-in-out infinite}
+@keyframes dr{50%{transform:translate(18px,-22px)}}@keyframes pl{50%{opacity:1}}@keyframes ri{50%{transform:scaleY(.65)}}
+/* projects */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.chips button{padding:7px 14px;border-radius:99px}.chips .on{background:var(--ac);border-color:var(--ac);color:#fff}
+.card{margin-bottom:12px}.card h3{font-size:18px;margin:8px 0 4px}.card p{margin:0;color:var(--mu)}
+.tag{font-size:12px;padding:2px 10px;border-radius:99px;border:1px solid var(--ln)}
+.det{display:none;margin-top:14px;border-top:1px solid var(--ln);padding-top:12px}.card.open .det{display:block}
+.det h4{margin:10px 0 2px;font:700 13px Sora}.det p{margin:0 0 4px;color:var(--tx)}
+.b{opacity:0;transition:opacity .5s}
+#projects[data-f=all] .b-all,#projects[data-f=Excel] .b-x,#projects[data-f=SQL] .b-s,#projects[data-f=PowerBI] .b-b{opacity:1}
+/* skills */
+.rings{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px}
+.ring{background:none;border:0;padding:0;text-align:center;color:var(--mu);font-size:12px}
+.ring i{display:flex;width:68px;height:68px;border-radius:50%;border:3px solid var(--ac);align-items:center;justify-content:center;font:700 15px Sora;color:var(--ac);background:var(--card);margin-bottom:6px;font-style:normal}
+.ring.bonus i{border-color:var(--ln);color:var(--mu)}
+#st{position:fixed;inset:0;z-index:50;background:rgba(8,10,20,.78);display:none;align-items:center;justify-content:center}
+#st.on{display:flex}
+.sc{width:min(380px,94vw);height:min(560px,88dvh);background:var(--card);border-radius:22px;padding:14px 18px;display:flex;flex-direction:column;position:relative;border:1px solid var(--ln)}
+.bars{display:flex;gap:4px}.bars i{flex:1;height:3px;border-radius:2px;background:var(--ln);overflow:hidden;position:relative}.bars i.d:after,.bars i.c:after{content:"";position:absolute;inset:0;background:var(--ac)}.bars i.c:after{animation:fl 4.5s linear forwards}
+@keyframes fl{from{transform:translateX(-100%)}to{transform:none}}
+.sb{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px}.sb h2{font-size:26px}.sb p{font-size:17px;color:var(--mu);margin:0}
+.tp{position:absolute;top:60px;bottom:70px;width:40%}.tp.l{left:0}.tp.r{right:0}
+/* journey */
+.tl{border-left:2px solid var(--ln);margin:22px 0 0 8px;padding-left:20px}
+.tl .glass{margin-bottom:14px;position:relative}.tl .glass:before{content:"";position:absolute;left:-29px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--ac)}
+.tl p{margin:4px 0 0;color:var(--mu)}
+.lk{display:grid;gap:10px;margin-top:20px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<button id="tg" aria-label="Toggle dark mode">◐</button>
+
+<section class="view on" id="home"><div class="bg">
+<div class="px" data-k="20" id="photobg"></div>
+<div class="px" data-k="16"><div class="blob" style="width:240px;height:240px;left:-60px;top:80px;background:var(--ac);opacity:.35"></div></div>
+<div class="px" data-k="28"><div class="blob" style="width:200px;height:200px;right:-40px;top:360px;background:var(--ac2);opacity:.35;animation-delay:-4s"></div></div></div>
+<div class="in hero">
+<label id="av" title="Tap to add your photo">B<small>add photo</small><input type="file" accept="image/*" hidden></label>
+<span class="tag glass" style="padding:3px 12px;border-radius:99px"><span class="dot"></span>Open to work</span>
+<h1 style="margin-top:14px">I turn raw data into business answers.</h1>
+<p>Hi, I’m Bala. I analyse data with Excel, SQL and Power BI, and I build real apps too: I shipped two production apps during my internship at Gainup.</p>
+<a class="btn pri" href="#projects">See my projects</a> <a class="btn" href="#hire">Hire me</a>
+<div class="stats glass"><div><b>3</b><span>Projects</span></div><div><b>3</b><span>Tools</span></div><div><b>2</b><span>Live apps</span></div><div><b>8.6</b><span>CGPA</span></div></div>
+</div></section>
+
+<section class="view" id="projects" data-f="all"><div class="bg">
+<div class="b b-all"><div class="px" data-k="18"><div class="blob" style="width:260px;height:260px;left:-60px;top:60px;background:var(--ac);opacity:.3"></div></div><div class="px" data-k="30"><div class="blob" style="width:220px;height:220px;right:-50px;top:420px;background:var(--am);opacity:.25;animation-delay:-3s"></div></div></div>
+<div class="b b-x"><div class="px" data-k="10" style="background:repeating-linear-gradient(0deg,var(--ln) 0 1px,transparent 1px 36px),repeating-linear-gradient(90deg,var(--ln) 0 1px,transparent 1px 36px)"></div><div class="px" data-k="24" id="cells"></div></div>
+<div class="b b-s"><div class="px" data-k="14" id="tbls"></div></div>
+<div class="b b-b"><div class="px" data-k="12" id="bars" style="display:flex;align-items:flex-end;gap:16px;padding:0 24px 110px;opacity:.28"></div><div class="px" data-k="30"><div class="blob" style="width:150px;height:150px;border-radius:50%;filter:none;border:26px solid var(--ac);right:30px;top:90px;opacity:.28"></div></div></div>
+</div><div class="in"><h2>Projects</h2><div class="chips" id="chips"></div><div id="plist"></div></div></section>
+
+<section class="view" id="skills"><div class="bg"><div class="px" data-k="18"><div class="blob" style="width:240px;height:240px;right:-60px;top:40px;background:var(--ac2);opacity:.3"></div></div><div class="px" data-k="26"><div class="blob" style="width:200px;height:200px;left:-50px;top:420px;background:var(--ac);opacity:.3;animation-delay:-5s"></div></div></div>
+<div class="in"><h2>Skills</h2><p style="color:var(--mu)">Tap a circle to see where I used it. Outlined circles are my main data skills.</p><div class="rings" id="rings"></div></div></section>
+
+<section class="view" id="journey"><div class="bg"><div class="px" data-k="18"><div class="blob" style="width:240px;height:240px;left:-60px;top:100px;background:var(--am);opacity:.25"></div></div></div>
+<div class="in"><h2>Journey</h2><div class="tl">
+<div class="glass"><h3>Three data projects</h3><p>Excel retail sales, Olist SQL analysis and a Power BI supply chain dashboard, each on its own dataset.</p></div>
+<div class="glass"><h3>App Developer trainee, Gainup</h3><p>3 months at a textile manufacturer. Built and deployed two apps: a vendor management system and a 5S Kaizen system.</p></div>
+<div class="glass"><h3>B.E. Electronics and Communication</h3><p>Graduated with an 8.6 CGPA.</p></div></div></div></section>
+
+<section class="view" id="hire"><div class="bg"><div class="px" data-k="22"><div class="blob" style="width:260px;height:260px;left:-40px;top:60px;background:var(--ac);opacity:.3"></div></div><div class="px" data-k="30"><div class="blob" style="width:200px;height:200px;right:-30px;top:340px;background:var(--ac2);opacity:.3;animation-delay:-4s"></div></div></div>
+<div class="in"><h2>Let’s work together</h2><p style="color:var(--mu)">I’m looking for a Data Analyst or Business Analyst role. Reach out on any of these.</p>
+<div class="lk"><a class="btn pri" href="mailto:sbaladharshini12@gmail.com">Send an email</a><a class="btn" href="https://www.linkedin.com/in/baladharshini-s-00420b269" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://github.com/BaladharshiniS" target="_blank" rel="noopener">GitHub</a><a class="btn" href="#" id="rs">Download resume</a></div></div></section>
+
+<nav id="nav"></nav>
+<div id="st"><div class="sc"><div class="bars" id="sbars"></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><b id="sn"></b><button id="sx" aria-label="Close">✕</button></div><div class="sb" id="sbody"></div><div class="tp l"></div><div class="tp r"></div></div></div>
+
+<script>
+var GH='https://github.com/BaladharshiniS/';
+var P=[
+{t:'Retail sales performance analysis',k:'Excel',s:'About 300K rows cleaned and analysed with pivot tables and a dashboard.',pr:'Which items, suppliers and sales channels drive revenue, and which items barely move?',ap:'Cleaned the Kaggle data, then built pivots for monthly trend, item type, top suppliers, retail vs warehouse and slow movers.',ins:'Add your top finding here.',r:'retail-sales-performance-analysis'},
+{t:'Olist e-commerce SQL analysis',k:'SQL',s:'10 business questions answered across a multi-table database.',pr:'What drives revenue in a Brazilian e-commerce marketplace?',ap:'Wrote SQL joins and aggregations in SQLite on the Olist dataset: monthly revenue, top categories, states and payment types.',ins:'Add your top finding here.',r:'olist-ecommerce-sql-analysis'},
+{t:'Supply chain delivery and profitability',k:'PowerBI',s:'Star schema, DAX measures and a 2-page dashboard on late deliveries.',pr:'Where are deliveries going late, and what does it cost in profit?',ap:'Cleaned in Power Query, modelled a star schema, built DAX measures and two report pages with synced slicers.',ins:'About 57% of orders are delivered late, and First and Second Class shipping are mostly late. Sales also fall from late 2017.',r:''}];
+var KL={Excel:'Excel',SQL:'SQL',PowerBI:'Power BI'};
+var S={Excel:['Excel','Cleaning, pivot tables, charts and dashboards.','Used in the retail sales project: about 300K rows and five business questions.'],
+SQL:['SQL','Joins, group by and aggregations on real tables.','Used in the Olist project: 10 business questions on a multi-table database.'],
+'Power BI':['Power BI','Data modelling and interactive dashboards.','Used in the supply chain project: star schema and a 2-page report with slicers.'],
+DAX:['DAX','Measures that answer business questions.','Built Total Sales, Total Profit, Total Orders and Late Delivery % for the supply chain report.'],
+React:['React','Building fast, app-like interfaces.','Used with Tailwind CSS for the apps I shipped at Gainup.'],
+Firebase:['Firebase','Database and hosting for live apps.','Powers the vendor management and 5S Kaizen apps used at Gainup.']};
+var $=function(s,e){return (e||document).querySelector(s)},$$=function(s,e){return [].slice.call((e||document).querySelectorAll(s))};
+var ic={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',projects:'<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',skills:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',journey:'<path d="M5 21V3M5 4h12l-2 4 2 4H5"/>',hire:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'};
+var V=['home','projects','skills','journey','hire'];
+$('#nav').innerHTML=V.map(function(v){return '<a href="#'+v+'" data-v="'+v+'"><svg viewBox="0 0 24 24">'+ic[v]+'</svg>'+v[0].toUpperCase()+v.slice(1)+'</a>'}).join('');
+function route(){var h=location.hash.slice(1);if(V.indexOf(h)<0)h='home';V.forEach(function(v){$('#'+v).classList.toggle('on',v===h)});$$('#nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===h)});window.scrollTo(0,0)}
+addEventListener('hashchange',route);route();
+document.addEventListener('pointermove',function(e){var v=$('.view.on'),x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;$$('.px',v).forEach(function(p){var k=+p.dataset.k||10;p.style.transform='translate('+(-x*k*2)+'px,'+(-y*k*2)+'px)'})});
+/* backgrounds */
+var c='';for(var i=0;i<14;i++)c+='<div style="position:absolute;width:36px;height:36px;left:'+(Math.random()*85|0)+'%;top:'+(5+Math.random()*80|0)+'%;background:var(--ac2);opacity:.15;animation:pl '+(3+Math.random()*3)+'s infinite '+(i*.4)+'s"></div>';$('#cells').innerHTML=c;
+var t='';[[8,12],[60,22],[25,48],[68,62],[10,78]].forEach(function(p,i){t+='<div style="position:absolute;left:'+p[0]+'%;top:'+p[1]+'%;width:70px;padding:6px;border:1px solid var(--ln);border-radius:8px;background:var(--card);opacity:.7;animation:dr '+(6+i)+'s ease-in-out infinite -'+i+'s"><div style="height:6px;background:var(--am);margin-bottom:5px"></div><div style="height:4px;background:var(--ln);margin-bottom:4px"></div><div style="height:4px;background:var(--ln)"></div></div>'});$('#tbls').innerHTML=t;
+$('#bars').innerHTML=[40,90,60,130,80,150,100].map(function(h,i){return '<div style="flex:1;height:'+h+'px;background:var(--ac);transform-origin:bottom;animation:ri 4s infinite '+i*.5+'s"></div>'}).join('');
+/* projects */
+function rp(f){$('#projects').dataset.f=f;$$('#chips button').forEach(function(b){b.classList.toggle('on',b.dataset.f===f)});
+$('#plist').innerHTML=P.filter(function(p){return f==='all'||p.k===f}).map(function(p){return '<div class="card glass"><span class="tag">'+KL[p.k]+'</span><h3>'+p.t+'</h3><p>'+p.s+'</p><div class="det"><h4>Problem</h4><p>'+p.pr+'</p><h4>Approach</h4><p>'+p.ap+'</p><h4>Key insight</h4><p>'+p.ins+'</p>'+(p.r?'<p style="margin-top:12px"><a class="btn" href="'+GH+p.r+'" target="_blank" rel="noopener">View on GitHub</a></p>':'')+'</div><button style="margin-top:12px" class="tg">Open case study</button></div>'}).join('');
+$$('.tg').forEach(function(b){b.onclick=function(){var c=b.parentNode;c.classList.toggle('open');b.textContent=c.classList.contains('open')?'Close case study':'Open case study'}})}
+$('#chips').innerHTML=['all','Excel','SQL','PowerBI'].map(function(f){return '<button data-f="'+f+'">'+(f==='all'?'All':KL[f])+'</button>'}).join('');
+$$('#chips button').forEach(function(b){b.onclick=function(){rp(b.dataset.f)}});rp('all');
+/* skills + stories */
+$('#rings').innerHTML=Object.keys(S).map(function(k){return '<button class="ring'+(k==='React'||k==='Firebase'?' bonus':'')+'" data-k="'+k+'"><i>'+k.slice(0,2)+'</i>'+k+'</button>'}).join('');
+var cur,idx,tm;
+function show(){var d=S[cur];$('#sn').textContent=d[0];$('#sbars').innerHTML=[0,1,2].map(function(i){return '<i class="'+(i<idx?'d':i===idx?'c':'')+'"></i>'}).join('');
+var body=[['<h2>'+d[0]+'</h2><p>'+d[1]+'</p>'],['<h2>Where I used it</h2><p>'+d[2]+'</p>'],['<h2>See it in action</h2><p>Open the projects to check the work behind this skill.</p><a class="btn pri" href="#projects" id="go">Go to projects</a>']][idx];$('#sbody').innerHTML=body[0];
+var g=$('#go');if(g)g.onclick=close;clearTimeout(tm);tm=setTimeout(nx,4500)}
+function nx(){if(idx<2){idx++;show()}else close()}
+function pv(){if(idx>0){idx--;show()}}
+function close(){clearTimeout(tm);$('#st').classList.remove('on')}
+$$('.ring').forEach(function(b){b.onclick=function(){cur=b.dataset.k;idx=0;$('#st').classList.add('on');show()}});
+$('.tp.l').onclick=pv;$('.tp.r').onclick=nx;$('#sx').onclick=close;addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+/* photo + theme */
+function setP(u){$('#av').style.backgroundImage='url('+u+')';$('#av').firstChild.nodeValue='';$('#photobg').style.backgroundImage='url('+u+')'}
+try{var sv=localStorage.getItem('bp');if(sv)setP(sv)}catch(e){}
+$('#av input').onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){setP(r.result);try{localStorage.setItem('bp',r.result)}catch(x){}};r.readAsDataURL(f)};
+$('#tg').onclick=function(){var d=document.documentElement,dk=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;d.dataset.theme=dk?'light':'dark'};
+$('#rs').onclick=function(e){e.preventDefault()};
+</script></body></html>
